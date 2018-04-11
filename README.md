@@ -9,7 +9,8 @@ What things you need to install the software and how to install them
 -Maven : (https://maven.apache.org/download.cgi)
 -jdk : (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 -Eclipse/netbeans
-
+-install [Plugin for Eclipse Spring Framework] (https://marketplace.eclipse.org/content/spring-ide) 
+	
 ```
 
 ### Installing
@@ -27,15 +28,7 @@ git clone git@github.com:davidwrq/ekardex.git
 
 ## Built With
 
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [Maven](https://maven.apache.org/) - Dependency Management
 
 ## Authors
 
