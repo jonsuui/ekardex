@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    
+    working_directory: ~/ekardex 
+
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+
+    steps:
+
+      - checkout 
+
+      - restore_cache: # restore the saved cache after the first run or if `application.yml` has changed
+          key: ekardex-{{ checksum "pom.xml" }}
+      
+      - run: mvn dependency:go-offline
+      
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: ekardex-{{ checksum "pom.xml" }}
+      
+      - run: mvn package 
+      
+      - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard. 
+          path: target/surefire-reports
+      
+      - store_artifacts: # store the uberjar as an artifact
+          path: target/ekardex-0.0.1-SNAPSHOT.jar
