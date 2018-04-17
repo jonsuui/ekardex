@@ -84,5 +84,8 @@ local.properties
 # JDT-specific (Eclipse Java Development Tools)		
 .classpath
 
+# Customs
+*.application.yml
 
-# End of https://www.gitignore.io/api/eclipse
+
+src/main/resources/application\.yml
