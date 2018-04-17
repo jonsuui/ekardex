@@ -9,7 +9,9 @@ What things you need to install the software and how to install them
 -Maven : (https://maven.apache.org/download.cgi)
 -jdk : (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 -Eclipse/netbeans
--install [Plugin for Eclipse Spring Framework] (https://marketplace.eclipse.org/content/spring-ide) 
+-install [Plugin for Eclipse Spring Framework] (https://marketplace.eclipse.org/content/spring-ide)
+- Mysql
+- (optional): Mysql Workbench
 	
 ```
 
@@ -25,6 +27,9 @@ git clone git@github.com:davidwrq/ekardex.git
 ```
  nvm install
 ```
+3. Database:
+
+After install mysql, set credentials on application.yml (use application.template.properties.yml as reference)
 
 ## Built With
 
