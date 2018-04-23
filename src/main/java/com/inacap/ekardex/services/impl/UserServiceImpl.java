@@ -37,4 +37,12 @@ public class UserServiceImpl implements UserService{
 		userRepository.save(user);
 	}
 
+	@Override
+	public void updateEmail(User user,String email) {
+		user.setEmail(email);
+		saveUser(user);
+	}
+	
+	
+
 }

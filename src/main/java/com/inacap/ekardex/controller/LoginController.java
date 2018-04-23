@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -69,5 +70,26 @@ public class LoginController {
 		return modelAndView;
 	}
 	
-
+	@RequestMapping(value="/profile/user", method = RequestMethod.GET)
+	public ModelAndView user(){
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		modelAndView.addObject("nav_userName", "Conectado como: "+user.getName()+" "+user.getLastName());
+		modelAndView.addObject("userEmail", user.getEmail());
+		modelAndView.setViewName("profile/user");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/profile/user", method = RequestMethod.POST)
+	public ModelAndView updateEmail(@Valid User user,@RequestBody String email) {
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User userExists = userService.findUserByEmail(user.getEmail());
+			userService.updateEmail(userExists, email);
+			modelAndView.addObject("user", new User());
+			modelAndView.setViewName("/profile/user");
+		return modelAndView;
+	}
+	
 }
