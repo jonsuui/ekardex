@@ -26,16 +26,20 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper">
-	        <a class="navbar-brand brand-logo" href="#"><img th:src="@{/img/ficha-medica-icon1.jpg}" alt="logo"></a>
+        <a class="navbar-brand brand-logo" href="#">
+          <img th:src="@{/img/ficha-medica-icon1.jpg}" alt="logo">
+        </a>
       </div>
       <!-- Search -->
       <div class="navbar-menu-wrapper d-flex align-items-center">
-        <p class="page-name d-none d-lg-block" th:text="${userName}" ></p>
+        <p class="page-name d-none d-lg-block" th:text="${userName}"></p>
         <ul class="navbar-nav ml-lg-auto">
           <li class="nav-item">
             <form class="mt-2 mt-md-0 d-none d-lg-block search-input">
               <div class="input-group">
-                <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
+                <span class="input-group-addon d-flex align-items-center">
+                  <i class="icon-magnifier icons"></i>
+                </span>
                 <input type="text" class="form-control" placeholder="Search...">
               </div>
             </form>
@@ -142,24 +146,42 @@
                         </tr>
                       </thead>
                       <tbody>
-                      <tr th:if="${not #lists.isEmpty(users)}">
-	       				<tr th:each="user : ${users}">
-	            			<td th:text="${user.name}"></td>
-	            			<td th:text="${user.email}"></td>
-	        		</tr>
+                        <tr th:if="${not #lists.isEmpty(users)}">
+                          <tr th:each="user : ${users}">
+                            <td th:text="${user.name}"></td>
+                            <td th:text="${user.email}"></td>
+                          </tr>
                       </tbody>
                     </table>
                   </div>
+
+                  <a class="btn btn-primary" href="#" th:href="@{/users/userform}" role="button">Link</a>
                   <div class="d-flex align-items-center justify-content-between flex-wrap">
                     <p class="mb-0">Showing 1 to 10 of 57 entries</p>
                     <nav>
                       <ul class="pagination rounded-separated pagination-info mt-3">
-                        <li class="page-item"><a class="page-link" href="#"><i class="mdi mdi-chevron-left"></i></a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#"><i class="mdi mdi-chevron-right"></i></a></li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">
+                            <i class="mdi mdi-chevron-left"></i>
+                          </a>
+                        </li>
+                        <li class="page-item active">
+                          <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">
+                            <i class="mdi mdi-chevron-right"></i>
+                          </a>
+                        </li>
                       </ul>
                     </nav>
                   </div>
@@ -173,8 +195,11 @@
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="container-fluid clearfix">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+              <a href="#" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
+              <i class="mdi mdi-heart text-danger"></i>
+            </span>
           </div>
         </footer>
         <!-- partial -->
@@ -184,21 +209,6 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
-  <!-- plugins:js -->
-  <script src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
-  <script src="node_modules/flot/jquery.flot.js"></script>
-  <script src="node_modules/flot/jquery.flot.resize.js"></script>
-  <script src="node_modules/flot.curvedlines/curvedLines.js"></script>
-  <!-- End plugin js for this page-->
-  <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/misc.js"></script>
-  <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="js/dashboard.js"></script>
   <!-- End custom js for this page-->
