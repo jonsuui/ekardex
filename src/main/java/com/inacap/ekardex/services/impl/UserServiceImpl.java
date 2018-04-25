@@ -64,6 +64,11 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
+	public UserModel findUserByIdModel(int id) {
+		return userConverter.convertUsertoUserModel(findUserById(id));
+	}
+	
+	@Override
 	public void removeUser(int id) {
 		User user = findUserById(id);
 		if(user != null) {

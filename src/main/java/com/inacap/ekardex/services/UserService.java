@@ -12,4 +12,5 @@ public interface UserService {
 	public void saveUser(User user);
 	public abstract User findUserById(int id);
 	public abstract void removeUser(int id);
+	public abstract UserModel findUserByIdModel(int id);
 }

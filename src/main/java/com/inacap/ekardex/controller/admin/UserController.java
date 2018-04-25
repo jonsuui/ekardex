@@ -44,8 +44,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="userform", method = RequestMethod.GET)
-	public String redirectUserForm(Model model){
-		model.addAttribute("userModel", new UserModel());
+	public String redirectUserForm(@RequestParam(name="id", required=false) int id, Model model){
+		UserModel user = new UserModel();
+		if(id != 0) {
+			user = userService.findUserByIdModel(id);
+		}
+		model.addAttribute("userModel", user);
 		return ViewConstant.USER_FORM;
 	}
 	

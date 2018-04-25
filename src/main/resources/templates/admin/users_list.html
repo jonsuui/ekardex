@@ -102,13 +102,15 @@
                           <tr th:each="user : ${users}">
                             <td th:text="${user.name}"></td>
                             <td th:text="${user.email}"></td>
-                            <td> <a th:href="@{/users/removeuser?id=__${user.id}__}"><button type="button" class="btn btn-info"><i class="mdi mdi-delete"></i>Delete</button></a></td>
+                            <td> 
+                             <a th:href="@{/users/userform?id=__${user.id}__}"><button type="button" class="btn btn-success"><i class="mdi mdi-cloud-download"></i>Editar</button></a>
+                            <a th:href="@{/users/removeuser?id=__${user.id}__}"><button type="button" class="btn btn-info"><i class="mdi mdi-delete"></i>Delete</button></a></td>
                           </tr>
                       </tbody>
                     </table>
                   </div>
 
-                  <a class="btn btn-primary" href="#" th:href="@{/users/userform}" role="button">Agregar Usuario</a>
+                  <a class="btn btn-primary" href="#" th:href="@{/users/userform?id=0}" role="button">Agregar Usuario</a>
                   <div class="d-flex align-items-center justify-content-between flex-wrap">
                     <p class="mb-0">Showing 1 to 10 of 57 entries</p>
                     <nav>
