@@ -6,8 +6,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Ekardex Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="node_modules/simple-line-icons/css/simple-line-icons.css">
+  <link rel="stylesheet" href="node_modules/flag-icon-css/css/flag-icon.min.css">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" href="node_modules/chartist/dist/chartist.min.css" />
+  <link rel="stylesheet" href="node_modules/jvectormap/jquery-jvectormap.css" />
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
   <link rel="stylesheet" th:href="@{/admin/css/style.min.css}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.css">
+
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
 </head>
@@ -65,8 +75,8 @@
               <span class="nav-link">Administración de Usuarios</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" th:href="@{/users/list}" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-title"> Usuarios</span>
+              <a class="nav-link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Usuarios</span>
                 <i class="icon-layers menu-icon"></i>
               </a>
             </li>
@@ -76,42 +86,64 @@
         <div class="content-wrapper">
           <div class="row">
             <div class="col-lg-12 grid-margin">
-              <div class="card performance-cards">
+              <div class="card">
                 <div class="card-body">
-                  <div class="row">
-                    <div class="col d-flex flex-row justify-content-center align-items-center">
-                      <div class="wrapper icon-circle bg-success">
-                        <i class="icon-rocket icons"></i>
-                      </div>
-                      <div class="wrapper text-wrapper">
-                        <p class="text-dark">8954</p>
-                        <p>Usuarios</p>
-                      </div>
-                    </div>
-                    <div class="col d-flex flex-row justify-content-center align-items-center">
-                      <div class="wrapper icon-circle bg-danger">
-                        <i class="icon-briefcase icons"></i>
-                      </div>
-                      <div class="wrapper text-wrapper">
-                        <p class="text-dark">7841</p>
-                        <p>Pacientes</p>
-                      </div>
-                    </div>
-                    <div class="col d-flex flex-row justify-content-center align-items-center">
-                      <div class="wrapper icon-circle bg-warning">
-                        <i class="icon-umbrella icons"></i>
-                      </div>
-                      <div class="wrapper text-wrapper">
-                        <p class="text-dark">6521</p>
-                        <p>Medicos</p>
-                      </div>
-                    </div>
+                  <h2 class="card-title">gestionar USUARIOS</h2>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Email</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr th:if="${not #lists.isEmpty(users)}">
+                          <tr th:each="user : ${users}">
+                            <td th:text="${user.name}"></td>
+                            <td th:text="${user.email}"></td>
+                            <td> <a th:href="@{/users/removeuser?id=__${user.id}__}"><button type="button" class="btn btn-info"><i class="mdi mdi-delete"></i>Delete</button></a></td>
+                          </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <a class="btn btn-primary" href="#" th:href="@{/users/userform}" role="button">Agregar Usuario</a>
+                  <div class="d-flex align-items-center justify-content-between flex-wrap">
+                    <p class="mb-0">Showing 1 to 10 of 57 entries</p>
+                    <nav>
+                      <ul class="pagination rounded-separated pagination-info mt-3">
+                        <li class="page-item">
+                          <a class="page-link" href="#">
+                            <i class="mdi mdi-chevron-left"></i>
+                          </a>
+                        </li>
+                        <li class="page-item active">
+                          <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">
+                            <i class="mdi mdi-chevron-right"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <!-- ROW ENDS -->
+        </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">

@@ -10,4 +10,6 @@ public interface UserService {
 	public abstract List<User> listAllUsers();
 	public User findUserByEmail(String email);
 	public void saveUser(User user);
+	public abstract User findUserById(int id);
+	public abstract void removeUser(int id);
 }

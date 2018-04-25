@@ -58,4 +58,19 @@ public class UserServiceImpl implements UserService{
 		return userConverter.convertUsertoUserModel(user);
 	}
 
+	@Override
+	public User findUserById(int id) {
+		return userRepository.findById(id);
+	}
+
+	@Override
+	public void removeUser(int id) {
+		User user = findUserById(id);
+		if(user != null) {
+			userRepository.delete(user);
+		}
+		
+	}
+
+	
 }
