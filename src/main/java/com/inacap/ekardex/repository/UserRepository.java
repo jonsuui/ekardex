@@ -8,4 +8,6 @@ import com.inacap.ekardex.entity.User;
 @Repository("userRepository")
 public interface UserRepository extends JpaRepository<User, Long> {
 	 User findByEmail(String email);
+	 public abstract User findById(int id);
+
 }

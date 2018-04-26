@@ -1,14 +1,19 @@
 package com.inacap.ekardex.services.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.inacap.ekardex.component.UserConverter;
 import com.inacap.ekardex.entity.Role;
 import com.inacap.ekardex.entity.User;
+import com.inacap.ekardex.model.UserModel;
 import com.inacap.ekardex.repository.RoleRepository;
 import com.inacap.ekardex.repository.UserRepository;
 import com.inacap.ekardex.services.UserService;
@@ -22,7 +27,10 @@ public class UserServiceImpl implements UserService{
     private RoleRepository roleRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+    @Autowired
+    @Qualifier("userConverter")
+    private UserConverter userConverter;
+    
 	@Override
 	public User findUserByEmail(String email) {
 		return userRepository.findByEmail(email);
@@ -37,4 +45,37 @@ public class UserServiceImpl implements UserService{
 		userRepository.save(user);
 	}
 
+	@Override
+	public List<User> listAllUsers() {
+	    List<User> users = new ArrayList<>();
+		userRepository.findAll().forEach(users::add);
+		return users;
+	}
+
+	@Override
+	public UserModel addUser(UserModel userModel) {
+		User user = userRepository.save(userConverter.convertUserModeltoUser(userModel));
+		return userConverter.convertUsertoUserModel(user);
+	}
+
+	@Override
+	public User findUserById(int id) {
+		return userRepository.findById(id);
+	}
+
+	@Override
+	public UserModel findUserByIdModel(int id) {
+		return userConverter.convertUsertoUserModel(findUserById(id));
+	}
+	
+	@Override
+	public void removeUser(int id) {
+		User user = findUserById(id);
+		if(user != null) {
+			userRepository.delete(user);
+		}
+		
+	}
+
+	
 }
